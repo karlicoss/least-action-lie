@@ -1,25 +1,74 @@
+# TODO discussions and explanations to friends
+
+
 Lately I've been trying to learn some fundamental physics and related math (representation theory of Lie groups and that sort of stuff). Turns out it's got quite a few prerequisites apart from knowledge of abstract group axioms! 
 One of them which is sort of blocking is my lack of intuitive understanding of the Lagrangian and the Hamiltonian. 
 
-Suppose we've got a space $Q$ that would be the /configuration/ space. Typically (TODO I think? at least in physics) it's a manifold, that is, something looking like a Eucledian space locally (TODO more agda?).
+Suppose we've got a space $Q$ that would be the /configuration/ space. (Note: I called it $Q$ for consisnency with $q$, which is common for 'position' coordinate in many sources). Typically (TODO I think? at least in physics) it's a manifold, that is, something looking like a Eucledian space locally (TODO more agda?).
 Configuration space is the 'snaphot' space at every point in time. It's not necessary 'positions' space, e.g. for a quantum system it would be the space of wavefunctions.
-TODO FIXME what does it have to do with manifold????
+TODO FIXME what does it have to do with manifold then? Maybe it's not true..
 
 # TODO can I inline macros?
 Some simple examples. 
 
-1. (one of the most trivial) particle on a straight line in 1D space. (NOTE: well, 1D space doesn't have anything BUT straight lines, reference to extrinsic and intrinsic curvature). Then $Q = \mathbb R$.
-2. 
-
-
- # TODO actually not a great example? 
-
- $Q = \mathbb R$. This is 
-
-
-Trivial example is probably straight line 
-
+1. point particle in 0D space. lol, that's prettu stupid, but 0d manifold .. why not? TODO $Q = \mathbb{0}$ (the only point in space). What a pitiful space... glad our universe is not like that. # TODO instantiate agda example everywhere
+2. particle on a straight line in 1D space. (NOTE: well, 1D space doesn't have anything BUT straight lines, reference to extrinsic and intrinsic curvature). Then $Q = \mathbb R$. With the 'default' newtonian physics, particle just wanders through such a space with the constant velocity...
+3. TODO harmonic oscillator... how to restrict the space??
+4. particle on a surface of normal sphere (2-sphere), so $Q = S^2$. It's interesting because it's a nontrivial example of manifold,  not 'globally' Eucledian, unlike the previous examples.
+   TODO NOTE (all 1d manifolds are boring right? e.g. sums of circles and lines/intervals)
 
 # TODO actually, this is defined via something called generalized coordinates, but I haven't got much time to understand it https://en.wikipedia.org/wiki/Generalized_coordinates
 # TODO maybe that's a post about agda as well???
 # would be soo coool..
+
+Ok, but we can't get far with just configuration space, we want to add some dynamics, that is, velocities. The subtle thing is that the vectors correspoinding to velocities can not easily be defined 'uniformly' across our configuration space, because it's a curved manifold in general case! Basically, our velocities only make sense 'locally', as long as they are in the context of their 'base point'.
+
+  TODO find a better video or something?
+  https://en.wikipedia.org/wiki/File:Circle_transport.gif that would do
+ TODO something called 
+TODO example
+
+
+So the basic premise of classical mechanics is that everything that can be observed only depends on 'position' and 'velocity'. TODO it's kinda dogmatic, but that seems to work, so we take it as an axiom, though I'm pretty sure there is plenty of philosophical justifications for why does it have to be that way. In other words.
+
+TODO ??? what is this space called?
+TODO we want to define things depending on position and velocity. For that we typically need a space for 'all positions and velocities'. We could (TODO could we?) have written it as $A = Q \times \mathbb R^n$, but that's barely helpful since the cartesian product 'erased' the information about base point.
+TODO this is more apparent with dependent types
+
+TODO a bit more of explanation:
+
+Now if you consider a specific point $q \in \Q$ and think, what is the space of velocities available to a particle at that point. Physycists use the $T_q$ notation and call it tangent space. And that would be $R^n$ it our case, since we've got a manifold! However, for velocities at different points $x, y$ it's important to mark the spaces of velocities with their base points and not just write $\mathbb R^n$, so they would be $T_x$ and $T_y$.
+
+So, mathematicians define something called 'tangent bundle'
+
+TODO from wikipedia: https://en.wikipedia.org/wiki/Tangent_bundle
+${\displaystyle {\begin{array}{lcr}TM=\bigsqcup _{x\in M}T_{x}M=\bigcup _{x\in M}\left\{x\right\}\times T_{x}M=\bigcup _{x\in M}\left\{(x,y)\mid y\in T_{x}M\right\}\\~~~~~~~=\left\{(x,y)\mid x\in M,\,y\in T_{x}M\right\}.\end{array}}}$.
+TODO ugh, I find it a bit scary. Look how it's elegant in Agda:
+
+$T: Q \to Base$
+$TQ = \Sigma Q T
+
+That may all be obvious, but I highlighting this, cause there will be subtler differences.
+# TODO don't like this ^ a bit unclear
+
+TODO NOTE that here we don't require that $v = q'(t)$, so really they are independent variables (we haven't even talked about time at all yet). Only after solving the equations we get the dependency as a result.
+
+Ok, cool. Not that we have space to define things on, let's do that. Another basic assumption from classical mechanics is that all systems are goverened by something called Lagragian:
+
+$L: TQ \to \mathbb R$.
+
+TODO examples
+
+TODO NOTE in general case lagrangian may only be time dependent... but I think all this is complicated enough
+
+The basic idea of Lagrangian is answering 'how does physics work for this system' if it has to go from state $(q_0, v_0)$ to $(q_1, v_1)$ within time interval $[t_0, t_q]$. TODO link to Baez?? To do that, we define a quantity called action:
+$S = \int_{t_0}^{t_1} L(q(t), v(t)) dt$ and claim that the system chooses a 'path' (i.e. mapping $q \to (q(t), v(t))$), such that $S$ is stationary to first order.
+TODO typically minimum? What are the interesting examples with maximum??
+TODO https://en.wikipedia.org/wiki/Principle_of_least_action
+
+TODO physical intuition about lagrangian
+NOTE lagrangian has units of energy
+
+
+
+
