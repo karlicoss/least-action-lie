@@ -1,0 +1,25 @@
+Lately I've been trying to learn some fundamental physics and related math (representation theory of Lie groups and that sort of stuff). Turns out it's got quite a few prerequisites apart from knowledge of abstract group axioms! 
+One of them which is sort of blocking is my lack of intuitive understanding of the Lagrangian and the Hamiltonian. 
+
+Suppose we've got a space $Q$ that would be the /configuration/ space. Typically (TODO I think? at least in physics) it's a manifold, that is, something looking like a Eucledian space locally (TODO more agda?).
+Configuration space is the 'snaphot' space at every point in time. It's not necessary 'positions' space, e.g. for a quantum system it would be the space of wavefunctions.
+TODO FIXME what does it have to do with manifold????
+
+# TODO can I inline macros?
+Some simple examples. 
+
+1. (one of the most trivial) particle on a straight line in 1D space. (NOTE: well, 1D space doesn't have anything BUT straight lines, reference to extrinsic and intrinsic curvature). Then $Q = \mathbb R$.
+2. 
+
+
+ # TODO actually not a great example? 
+
+ $Q = \mathbb R$. This is 
+
+
+Trivial example is probably straight line 
+
+
+# TODO actually, this is defined via something called generalized coordinates, but I haven't got much time to understand it https://en.wikipedia.org/wiki/Generalized_coordinates
+# TODO maybe that's a post about agda as well???
+# would be soo coool..
