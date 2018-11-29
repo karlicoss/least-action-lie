@@ -1,0 +1,219 @@
+Ok, cool. Not that we have space to define things on, let's do that. Another basic assumption from classical mechanics is that all systems are goverened by something called Lagragian.
+
+So, if you are like me and ever been remotely interested in classical mechanics, you know the drill. 
+
+Problem statement: the system goes from state $q_0$ to $q_1$ within time interval $[t_0, t_1]$. We want to figure out how, i.e. which path, i.e. a function $\gamma: t \in [t_0, t_1] \to Q$  does it take? 
+TODO actually tangent bundle??
+TODO lagrangian
+
+To do taht, we define a functional called 'action' $S(\gamma) = \int_{t_0}^{t_1} L(\gamma(t), \gamma'(t)) dt$ and claim that the system chooses a path, such that $S$ is stationary to first order. $L$ is something called 'Lagrangian', which depends on TODO tangent bundle
+TODO link to Baez??
+TODO typically minimum? What are the interesting examples with maximum??
+TODO https://en.wikipedia.org/wiki/Principle_of_least_action
+
+So far so good. If you see it for the first time it sort of blows your mind so you are curious what's next. After that, 99% of explanations are considering a classical particle in a potential well: $L(q, v) = \frac{1}{2} m v \cdot v - V(q)$. Then they plug in the Euler-Lagrange equation and get Newthon's law of motion. Yeah, awesome. The problem with those explanations is they stop there. So what? What's up with that weird thing which has units of energy but not quite? What's a Lagrangian? I was pretty comfy solving potential wells without having to minimize a functional, thank you very much.
+
+Next, you try to look up some sort of definition for Lagrangian. That turns out to be really not easy! 
+The closest insights you get on this page https://en.wikipedia.org/wiki/Lagrangian_mechanics is
+#+BEGIN_QUOTE
+Lagrangian is a function of the generalized coordinates, their time derivatives, and time, and contains the information about the dynamics of the system
+#+END_QUOTE
+ and
+#+BEGIN_QUOTE
+the position coordinates and velocity components are all independent variables
+#+END_QUOTE
+I'm lucky enough to know Russian, but Russian wikipedia page is not any more helpful. You probably have a gut feeling that it's gotta at least be a smooth function or someithing like that, but it's not really mentioned anywhere. Okay, for now you decide that it must be any reasonble function of $q$, $v$ and $t$. Actually, forget time dependency for now, it's tricky enough as it is.
+
+So now that you established what's the object you are trying to study, you go through more examples. Next one is typically double pendulum or 'sliding pendulum' https://en.wikipedia.org/wiki/Lagrangian_mechanics#Pendulum_on_a_movable_support. But yet again, Lagrangian is postulated to be the difference of kinetic and potential energy, which is not very convincing.
+
+Next example if typically electromagnetism: $L = \frac{1}{2} v \cdot v -e \phi + e v \cdot A$. Whoa guys, I'm still not done with simple systems! EM fields are scary, things spiral around and radiate, come on.
+
+# TODO even Baez
+# TODO momentum equals mass times velocity
+
+Ok fine, you think. I'll come up with my own Lagrangians. 
+
+1. Obvious example of **a** function is $L(q, v) = 0$. Nice, let's see what does that mean.
+ 
+    Well, if you think about it, action is always zero, so any path would be stationary. This should probably ring an alarm but let's see what happens if we try to plug that in Hamilton's approach...
+
+    TODO hamilton's equations: $dq/dt = 0$, $dp/dt = 0$. So $q = const$ and $p = const$. Well, that doesn't look good. First of all, the position can't change. Doesn't that mean that $p$ must be zero then? But Hamilton's equations don't really imply that. Ugh, well, maybe we have to go throught Legendre transform and all that stuff to figure out what's wrong with zero lagrangian?
+    # TODO differentiable??
+
+2. Okay, another attempt. $L(q, v) = v \cdot v$ is boring$, it's like typical example, but with zero potential energy. Hmm... what if we make it equal to potential energy **only**? $L(q, v) = - q \cdot q$.
+TODO what if we try to minimize the functional directly
+
+p = dL/dv = 0 ??? H = q \cdot q$.
+so, dq/dt =  dH/dp = 0, so q = const?
+    dp/dt = -dH/dq = 2q what does that even mean given that 
+Basically, the only solution compatible with that is $q = 0$, $p = 0$. If you think about in terms of ordinary energy, it kind of makes sense, the particle has no kinetic energy at all, so no matter what, it can't get past the potential barrier. However, if you imagine same particle starting at $q \ne 0$, if you think in terms of minimizing the path, it wants to spend as much time as it can at 'q = 0', it doesn't matter to the particle how fast does it have to get from initial $q$ to $q = 0$. so we can a discontinuity in the path, that explains our problems with Hamilton's equations? 
+
+TODO fuck, actually, as little time at q = 0! Cause the less is position, the bigger is action!
+
+To investigate that, let's go back to the following 'standard' Lagrangian $L_m(q, v) = \frac{1}{2} m v \cdot v - \frac{1}{2} q \cdot q$. It's just a pendulum/harmonic oscillator basically. The Lagrangian of our interest is just like that but with mass equal to zero!
+
+So the solution to $L_m$ is just $m q'' = -q$, which is a periodic motion with frequency $\omega = \frac{1}{m}$. 
+TODO max position??
+TODO sin, etc
+So, the smaller the mass, the more frequently it's going to oscillate, basically spending as much time as possible close to its leftmost and rightmost positions. We can't take the limit $m \to 0$ though, since $\sin \frac{1}{x}$ is discontinuous at $0$.
+
+Right. So we found out that not having terms dependent on $v$ (which is kind of like limiting mass to $0$) can get us in trouble. Still unclear what's wrong with this $L$ as a function though!
+
+3. Let's try having some dependency on $v$. $L(q, v) = A \cdot v$, where $A$ is some scalar field.
+
+$p = pL/pv = A$. So, $H = v \cdot p - L = v \cdot A - A \cdot v = 0$. Crap, we've seen zero Hamiltonian already and it didn't end up well. What's wrong here??? More generally, suppose $L(q, v) = C(q) \cdot v + D(q)$. Then, $pL/pv = C(q)$, and we're gonna get $H(q, p) = -D(q)$. So, if Lagrangian only got linear velocity terms, it has no impact on system dynamics??
+
+Again, in essence that is similar to considering a particle with mass $m$ in EM field and limiting mass to $0$. TODO is it? what about phi??
+
+https://physics.stackexchange.com/a/63377/40624
+TODO symmetry considerations? So we can't just separate lagrangian form from transofrmations?
+TODO hmm. Landau Lifshitz?? k
+Galilean invariance forces Lagrangian to be a quadratic function of velocity. You may want to read section 4 of Landau and Lifshitz's Mechanics to understand this point better.
+
+TODO https://en.wikibooks.org/wiki/Classical_Mechanics/Lagrange_Theory#Why_does_the_extremum_of_a_functional_determine_motion?
+
+TODO https://physics.stackexchange.com/a/261228/40624
+eh, that's confusing...
+In other words, when you ask for compliance with ELeq you are restricting the solutions, or motions, to functions of constant or linear dependence with time.
+
+TODO consider equations of motion??
+
+TODO Lorenz invariance??? 1/2 m v^2 is not lorenz invariant either. But the difference is total time derivative???
+
+TODO
+
+TODO https://physics.stackexchange.com/a/55465/40624
+
+A simpler answer is that the term in the Euler-Lagrange equations involving q˙ is:
+ddt∂L∂q˙
+So L needs to be quadratic in q˙ or else the time derivative will be proportional to something other than q¨.
+hmm...
+
+huh https://physics.stackexchange.com/a/55460/40624
+DIT: Fun Generalization! (Inspired by elfmotat's answer) Take generic Lagrangian L=∑nanq˙n+f(q) (Putting all velocity in the first term, generic function of position in the second). Then
+
+
+# TODO play with that
+https://www.myphysicslab.com/springs/single-spring-en.html
+
+# TODO does it really spend most time close to zero??
+# TODO displacement -- it stays same right??
+
+
+# TODO consider what happens with 
+
+
+
+TODO what does that tell about $v$???
+
+TODO effectively, system has 0 mass, but mass is not impacted by potential energy??
+
+the only solution compatible with such a lagrangian is 
+
+ 
+
+
+# 2. Ok, let's take $L(q, v) = v \cdot v$. So UGH
+
+
+
+# TODO hamilton equations?
+
+# TODO after a bit of lurking https://en.wikipedia.org/wiki/Euler%E2%80%93Lagrange_equation#Statement (more formal)
+
+
+
+
+
+# TODO note I'm not criticising wiki page. I mean, I sort of am, but I'm not sure yet how to keep it simple yet more formal
+
+
+# https://en.wikipedia.org/wiki/Lagrangian_mechanics#Cartesian_coordinates
+# TODO how to link?
+
+TODO vector
+
+
+
+1. Ok. Let's take $L(v, q) = \frac{1}{2} v \cdot v q \cdot q$.
+
+$p = v q \cdot q$. So, $H = p v - L = \frac{1}{2} \frac{p^2}{q^2}$
+
+TODO hmm, that's more interesting now!!!
+
+TODO ok, handled it in ipython and physics-sim thing
+
+TODO spoiler: next chapter, link to regularity
+TODO postpone it for later??
+
+pH/pq = -p^2/q^3
+pH/pp = p/q^2
+
+TODO what does q = 0 mean??
+TODO it's pretty similar to geodesic motion, no?
+
+do dq/dt = p  /q^2
+   dp/dt = p^2/q^3
+
+q > 0,  p > 0 -- they will alway increase
+q > 0,  p < 0 -- might be interesting... FUCK, it's attracted to 0 in that case... wtf??
+q < 0,  p < 0 -- both derivatives are negative and will repulse from 0
+q < 0,  p > 0 -- again, q will start getting closer to 0, p will start getting closer to 0... wtf
+
+that's super cool! might be worth a separate post!
+# few fun things to notice: whatever sign q got, it's 
+
+
+
+TODO clues for further research: regularity, carefully go throught all formal derivations
+
+
+
+$L: TQ \to \mathbb R$.
+
+# TODO bb macro??
+# TODO how is this related to lagrange multipliers?
+
+
+TODO physical intuition about lagrangian
+NOTE lagrangian has units of energy
+
+Some typical examples of Lagrangians:
+
+1. TODO zero lagrangian? Probably doesn't make physical sense... 
+2. Free particle: $L(q, v) = v \cdot v$. Basically, it's like if only got kinetic energy here (I dropped the $\frac{1}{2} m$ term)
+3. Particle in a potential field: $L(q, v) = v \cdot v - V(q)$, where $V$ is some smooth function of position, which physicists typically label as 'Potential energy'
+4. Since Lagrangian is technically just a function os position and velocity, why not $L(q, v) = q \cdot v$ (TODO does it even make sense?) TODO what the hell is this thing??
+ 
+So far so good. However, I wanted to get a bit more intuition about the shape of Lagrangians and how it corresponded to actual physics/behaviour. To figure that out, one could try and directly minimise the action over the path they interested in, however it's hardly intuitive!
+What turns out to be easier is if we use the Hamiltonian approach.
+
+ TODO blah blah link to Hamiltonian wiki page
+ 
+$p_j = \pdv{L}{v^j}$
+$H(q, p) = \sum_i v^i p_i - L(q, v)$
+ 
+TODO for 4: shit, we get zero hamiltonian. so what does that mean????
+hmm, it doesn't depend on qv terms?? and it's all linear..
+o, then
+dq/dt = pH/pp = 0
+dp/dt = -pH/pq = 0
+
+so? q = const; p = const??
+that's a pretty weird system... but in this case, conjugate momentum is equal to position!
+TODO err. that's all very bizarre
+
+TODO: looks like it's an example of irregular hamiltonian. give it as an example to solve formally; but also explain why is it bad
+see Baez with example of GR free particle hamiltonian
+
+
+fucking hell. why is that so complicated? :(
+how to translate back from momentum to velocity??
+
+
+ok, as Baez says in classical mechanics book, that basically means no temporal evolution is possible.
+TODO still unclear what's up with inconsistent initial conditions here...
+
+The gradient of the Hamiltonian is zero at the saddle point, so a system started at the saddle point does not leave the saddle point.  [SICM]
+
+

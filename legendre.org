@@ -55,61 +55,6 @@ That may all be obvious, but I highlighting this, cause there will be subtler di
 
 TODO NOTE that here we don't require that $v = q'(t)$, so really they are independent variables (we haven't even talked about time at all yet). Only after solving the equations we get the dependency as a result.
 
-Ok, cool. Not that we have space to define things on, let's do that. Another basic assumption from classical mechanics is that all systems are goverened by something called Lagragian:
-
-$L: TQ \to \mathbb R$.
-
-TODO examples
-
-TODO NOTE in general case lagrangian may only be time dependent... but I think all this is complicated enough
-
-The basic idea of Lagrangian is answering 'how does physics work for this system' if it has to go from state $(q_0, v_0)$ to $(q_1, v_1)$ within time interval $[t_0, t_q]$. TODO link to Baez?? To do that, we define a quantity called action:
-$S = \int_{t_0}^{t_1} L(q(t), v(t)) dt$ and claim that the system chooses a 'path' (i.e. mapping $q \to (q(t), v(t))$), such that $S$ is stationary to first order.
-TODO typically minimum? What are the interesting examples with maximum??
-TODO https://en.wikipedia.org/wiki/Principle_of_least_action
-
-TODO physical intuition about lagrangian
-NOTE lagrangian has units of energy
-
-Some typical examples of Lagrangians:
-
-1. TODO zero lagrangian? Probably doesn't make physical sense... 
-2. Free particle: $L(q, v) = v \cdot v$. Basically, it's like if only got kinetic energy here (I dropped the $\frac{1}{2} m$ term)
-3. Particle in a potential field: $L(q, v) = v \cdot v - V(q)$, where $V$ is some smooth function of position, which physicists typically label as 'Potential energy'
-4. Since Lagrangian is technically just a function os position and velocity, why not $L(q, v) = q \cdot v$ (TODO does it even make sense?) TODO what the hell is this thing??
- 
-So far so good. However, I wanted to get a bit more intuition about the shape of Lagrangians and how it corresponded to actual physics/behaviour. To figure that out, one could try and directly minimise the action over the path they interested in, however it's hardly intuitive!
-What turns out to be easier is if we use the Hamiltonian approach.
-
- TODO blah blah link to Hamiltonian wiki page
- 
-$p_j = \pdv{L}{v^j}$
-$H(q, p) = \sum_i v^i p_i - L(q, v)$
- 
-TODO for 4: shit, we get zero hamiltonian. so what does that mean????
-hmm, it doesn't depend on qv terms?? and it's all linear..
-o, then
-dq/dt = pH/pp = 0
-dp/dt = -pH/pq = 0
-
-so? q = const; p = const??
-that's a pretty weird system... but in this case, conjugate momentum is equal to position!
-TODO err. that's all very bizarre
-
-TODO: looks like it's an example of irregular hamiltonian. give it as an example to solve formally; but also explain why is it bad
-see Baez with example of GR free particle hamiltonian
 
 
-fucking hell. why is that so complicated? :(
-how to translate back from momentum to velocity??
-
-
-ok, as Baez says in classical mechanics book, that basically means no temporal evolution is possible.
-TODO still unclear what's up with inconsistent initial conditions here...
-
-The gradient of the Hamiltonian is zero at the saddle point, so a system started at the saddle point does not leave the saddle point.  [SICM]
-
-
-
-
-
+* TODO disclaimer...
