@@ -17,6 +17,8 @@ Some simple examples.
 4. particle on a surface of normal sphere (2-sphere), so $Q = S^2$. It's interesting because it's a nontrivial example of manifold,  not 'globally' Eucledian, unlike the previous examples.
    TODO NOTE (all 1d manifolds are boring right? e.g. sums of circles and lines/intervals)
 
+# TODO here: start with classic example, link to physical example double pendulum Baez, then list remaining ones
+  
 # TODO actually, this is defined via something called generalized coordinates, but I haven't got much time to understand it https://en.wikipedia.org/wiki/Generalized_coordinates
 # TODO maybe that's a post about agda as well???
 # would be soo coool..
@@ -68,6 +70,45 @@ TODO https://en.wikipedia.org/wiki/Principle_of_least_action
 
 TODO physical intuition about lagrangian
 NOTE lagrangian has units of energy
+
+Some typical examples of Lagrangians:
+
+1. TODO zero lagrangian? Probably doesn't make physical sense... 
+2. Free particle: $L(q, v) = v \cdot v$. Basically, it's like if only got kinetic energy here (I dropped the $\frac{1}{2} m$ term)
+3. Particle in a potential field: $L(q, v) = v \cdot v - V(q)$, where $V$ is some smooth function of position, which physicists typically label as 'Potential energy'
+4. Since Lagrangian is technically just a function os position and velocity, why not $L(q, v) = q \cdot v$ (TODO does it even make sense?) TODO what the hell is this thing??
+ 
+So far so good. However, I wanted to get a bit more intuition about the shape of Lagrangians and how it corresponded to actual physics/behaviour. To figure that out, one could try and directly minimise the action over the path they interested in, however it's hardly intuitive!
+What turns out to be easier is if we use the Hamiltonian approach.
+
+ TODO blah blah link to Hamiltonian wiki page
+ 
+$p_j = \pdv{L}{v^j}$
+$H(q, p) = \sum_i v^i p_i - L(q, v)$
+ 
+TODO for 4: shit, we get zero hamiltonian. so what does that mean????
+hmm, it doesn't depend on qv terms?? and it's all linear..
+o, then
+dq/dt = pH/pp = 0
+dp/dt = -pH/pq = 0
+
+so? q = const; p = const??
+that's a pretty weird system... but in this case, conjugate momentum is equal to position!
+TODO err. that's all very bizarre
+
+TODO: looks like it's an example of irregular hamiltonian. give it as an example to solve formally; but also explain why is it bad
+see Baez with example of GR free particle hamiltonian
+
+
+fucking hell. why is that so complicated? :(
+how to translate back from momentum to velocity??
+
+
+ok, as Baez says in classical mechanics book, that basically means no temporal evolution is possible.
+TODO still unclear what's up with inconsistent initial conditions here...
+
+The gradient of the Hamiltonian is zero at the saddle point, so a system started at the saddle point does not leave the saddle point.  [SICM]
+
 
 
 
