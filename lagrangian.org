@@ -6,7 +6,16 @@ Problem statement: the system goes from state $q_0$ to $q_1$ within time interva
 TODO actually tangent bundle??
 TODO lagrangian
 
-To do taht, we define a functional called 'action' $S(\gamma) = \int_{t_0}^{t_1} L(\gamma(t), \gamma'(t)) dt$ and claim that the system chooses a path, such that $S$ is stationary to first order. $L$ is something called 'Lagrangian', which depends on TODO tangent bundle
+To do that, we exploit something that is called 'stationary action principle' (more commonly, 'minimum action principle', I'll elaborate on that later). We define a functional called 'action' $S(\gamma) = \int_{t_0}^{t_1} L(\gamma(t), \gamma'(t)) dt$ and claim that the system chooses a path, such that $S$ is stationary to first order. This is something called https://en.wikipedia.org/wiki/Hamilton%27s_principle and $L$ is called 'Lagrangian', which depends on TODO tangent bundle
+
+To actually find the stationary path of interest, we solve Euler-Lagrange (I'll just call them EL for brevity) equations. No need to repeat derivation, cause it's variational calculus 101, you can find it here https://en.wikipedia.org/wiki/Hamilton%27s_principle#Euler%E2%80%93Lagrange_equations_derived_from_the_action_integral. They look like:
+
+$$pL/pq - d/dt pL/pv = 0$.
+
+
+# TODO mark words that can be clicked as grey? or add a tooltip??
+
+
 TODO link to Baez??
 TODO typically minimum? What are the interesting examples with maximum??
 TODO https://en.wikipedia.org/wiki/Principle_of_least_action
@@ -42,19 +51,17 @@ TODO hamiltonian later; first try blindly and formally and see that it fails; th
 
 
 
-Ok fine, you think. I'll come up with my own Lagrangians. 
+Ok fine, you think. I'll come up with my own Lagrangians. Let's assume that configuration space is 1D for now, so $q$ and $v$ are just real numbers.
 
-1. Obvious example of **a** function is $L(q, v) = 0$. Nice, let's see what does that mean.
+1. If you have to come up with **any** real-valued function what would your first thought? I bet it's zero identity, so $L(q, v) = 0$. Nice, let's see what does that mean.
  
     Well, if you think about it, action is always zero, so any path would be stationary. This should probably ring an alarm but let's see what happens if we try to plug that in Hamilton's approach...
 
-    TODO hamilton's equations: $dq/dt = 0$, $dp/dt = 0$. So $q = const$ and $p = const$. Well, that doesn't look good. First of all, the position can't change. Doesn't that mean that $p$ must be zero then? But Hamilton's equations don't really imply that. Ugh, well, maybe we have to go throught Legendre transform and all that stuff to figure out what's wrong with zero lagrangian?
-    # TODO differentiable??
+#   TODO hamilton's equations: $dq/dt = 0$, $dp/dt = 0$. So $q = const$ and $p = const$. Well, that doesn't look good. First of all, the position can't change. Doesn't that mean that $p$ must be zero then? But Hamilton's equations don't really imply that. Ugh, well, maybe we have to go throught Legendre transform and all that stuff to figure out what's wrong with zero lagrangian?
+# TODO differentiable??
 
-2. Okay, another attempt. $L(q, v) = v \cdot v$ is boring$, it's like typical example, but with zero potential energy. Hmm... what if we make it equal to potential energy **only**? $L(q, v) = - q \cdot q$.
+2. Okay, another attempt. $L(q, v) = v \cdot v$ is boring$, it's like typical example, but with zero potential energy. Hmm... what if we instead we make the Lagrangian equal to potential energy **only**? $L(q, v) = - q \cdot q$.
 TODO what if we try to minimize the functional directly
-
-TODO assume 1D for now
 
 $ d/dt pL/pv = pL/pq $
 
@@ -151,6 +158,8 @@ TODO maybe that's a demonstration Lagrangian approach doesn't make sense on larg
 
 # TODO maybe better to consider particle in kinda gravitational field here instead... but not involving the mass?? L(v, x) = mv^2/2 - gx? easier since it doesn't involve periodic motion.
 
+# TODO what if we have v^2 term but ALSO linear? It's just like velocity transofrmation right? Is it some sort of drag/drift?? might be even total derivative?
+
 
 TODO consider if we start and ed in the rightmost position within a period timespan. Why this path is not stationary? TODO basically, because we could shift everything in the middle in both directions and decrease/increase the lagrangian?
 
@@ -158,8 +167,52 @@ TODO consider if we start and ed in the rightmost position within a period times
 Right. So we found out that not having terms dependent on $v$ (which is kind of like limiting mass to $0$) can get us in trouble. Still unclear what's wrong with such a Lagrangian mathematically, as a function though!
 TODO do a better analysis of second variation?
 
+TODO ok, so in the spirit of Lagrangian formalism, we pose the following problem:
+
+https://en.wikipedia.org/wiki/Harmonic_oscillator#Simple_harmonic_oscillator
+
+$L(q, v) = v^2 - q^2$. The particle starts at $q = q_0$ and ends at $q = q0$ after time $T = 2 \pi$ (it better do because the frequency is $1$ here). We want to know the equations of motion.
+Now, you know it's gotta be some kind of periodic motion. However the question.
+ TODO suppose you were solving the IVP: given $q_0$ and $v_0$, where does the particle end up at $T = 2 \pi$?
+ So we know the solution is of form $q(t) = A \cos(t + \phi)$, since $q(0) = q_0$ and $q'(0) = v_0$, we get:
+ $q_0 = A \cos \phi$
+ $v_0 = -A \sin \phi$ 
+ 
+# TODO see here http://scipp.ucsc.edu/~haber/ph5B/sho09.pdf
+$q(t) = q_0 \cos t + v_0 \sin t$
+
+Now if we consider $q$ at a fixed time $T$ as a function of $v_0$, we get:
+
+$q_T(v_0) = q_0 \cos T + v_0 \sin T$, which is a linear function. So in general you can invert it and consider $v_0$ as a function of $q_T$, which would uniquely solve our BVP. However there is one special case: when $\sin T = 0$, i.e. $T = 2 \pi k, k \in \bZ$. In that case $q_T$ ends up being constant function $q_T = q_0$, and can't be inverted! TODO ???? That means that the EL solution can't be global minimum???
+TODO check that!
 
 
+
+ Now let's fix $q_0$ and vary $v_0$, so consider the function $E(v_0) = $ <TODO position of that particle after $T$. Of course it will depend continously on $v_0$, but it also won't be injective! 
+
+TODO demonstrate that?...
+
+TODO ok, so that basically means that each individual solution can't be global minimum? So what are they, saddle points???
+# TODO separate that? that deserves a subsection I guess...
+
+
+TODO chap6.pdf -- good remark 4 on page 7. considers harmonic oscillator and slight variation to reason the stationary function is not a maximum
+ look at prob 6.6. -- minimum of saddle?
+ 
+
+https://physics.stackexchange.com/questions/122486/confusion-regarding-the-principle-of-least-action-in-landau-lifshitz-the-clas
+here the guy claims about small T in lagrangian approach. other than that it's only a saddle point
+TODO wonder still if the minimum possible velocity is the global minimum?
+
+
+TODO conditions for weak minimum
+# https://physics.stackexchange.com/a/122511/40624
+TODO aha! conjugate points!
+t is such examples that Ref. 1. has in mind when saying that the principle of least action is actually a principle of stationary action. The above phenomenon is quite general, and related to conjugated points/turning points and Morse theory. 
+
+TODO ok. maybe expland it analytically around 0? might be easier.
+
+TODO nature is not lazy. nature is stationary TODO what are the implications??
 
 p = dL/dv = 0 ??? H = q \cdot q$.
 so, dq/dt =  dH/dp = 0, so q = const?
