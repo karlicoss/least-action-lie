@@ -1,29 +1,29 @@
-Ok, cool. Not that we have space to define things on, let's do that. Another basic assumption from classical mechanics is that all systems are goverened by something called Lagragian.
+* TODO link to prev. post
+  
+* TODO https://ickc.github.io/MathJax-third-party-extensions/physics/
+* https://ickc.github.io/MathJax-third-party-extensions/physics/test/macro.html
+  
+* content
 
-So, if you are like me and ever been remotely interested in classical mechanics, you know the drill. 
 
-Problem statement: the system goes from state $q_0$ to $q_1$ within time interval $[t_0, t_1]$. We want to figure out how, i.e. which path, i.e. a function $\gamma: t \in [t_0, t_1] \to Q$  does it take? 
-TODO actually tangent bundle??
-TODO lagrangian
+Ok, cool. Now that we have space to define things on, let's study it. A fundamental assumption from classical mechanics is that all systems are goverened by something called Lagragian. If you are like me and ever been remotely interested in classical mechanics, you probably know the drill. 
 
-To do that, we exploit something that is called 'stationary action principle' (more commonly, 'minimum action principle', I'll elaborate on that later). We define a functional called 'action' $S(\gamma) = \int_{t_0}^{t_1} L(\gamma(t), \gamma'(t)) dt$ and claim that the system chooses a path, such that $S$ is stationary to first order. This is something called https://en.wikipedia.org/wiki/Hamilton%27s_principle and $L$ is called 'Lagrangian', which depends on TODO tangent bundle
+**Problem statement**: the system evolves from state $\vb{q_i}$ to $\vb{q_f}$ within time interval $[t_i, t_f]$. We want to figure out how. Which path, i.e. a function $\gamma: t \in [t_i, t_f] \to Q$  does it take? 
 
-To actually find the stationary path of interest, we solve Euler-Lagrange (I'll just call them EL for brevity) equations. No need to repeat derivation, cause it's variational calculus 101, you can find it here https://en.wikipedia.org/wiki/Hamilton%27s_principle#Euler%E2%80%93Lagrange_equations_derived_from_the_action_integral. They look like:
+# TODO actually tangent bundle??
+# TODO make sure all the derivative symbols are from that physics package
 
-$$pL/pq - d/dt pL/pv = 0$.
+**Answer**: to figure out the path, we exploit something that is called [[https://en.wikipedia.org/wiki/Principle_of_least_action][/stationary action principle/]] (more commonly, /minimum action principle/, I'll elaborate on that later). We define a functional called /action/ $S(\gamma) = \int\limits_{t_i}^{t_f} L(\gamma(t), \gamma'(t)) dt$ and claim that the system chooses a path, such that $S$ is **stationary** to first order. This is something called [[https://en.wikipedia.org/wiki/Hamilton%27s_principle][Hamilton's principle]] and $L$ is called /Lagrangian/.
 
+Finding stationary points of a functional is quite tricky. To actually do that, we solve [[https://en.wikipedia.org/wiki/Euler%E2%80%93Lagrange_equation#Statement][Euler-Lagrange]] (I'll just call them EL for brevity) equations. It's pretty much variational calculus 101, you can find the derivation [[https://en.wikipedia.org/wiki/Hamilton%27s_principle#Euler%E2%80%93Lagrange_equations_derived_from_the_action_integral][here]] if you're interested. They look like:
+
+$$\pdv{L}{\vb{q}} - \dv{}{t} \pdv{L}{\vb{v}} = 0$$
 
 # TODO mark words that can be clicked as grey? or add a tooltip??
-
-
-TODO link to Baez??
-TODO typically minimum? What are the interesting examples with maximum??
-TODO https://en.wikipedia.org/wiki/Principle_of_least_action
-
-So far so good. If you see it for the first time it sort of blows your mind so you are curious what's next. After that, 99% of explanations are considering a classical particle in a potential well: $L(q, v) = \frac{1}{2} m v \cdot v - V(q)$. Then they plug in the Euler-Lagrange equation and get Newthon's law of motion. Yeah, awesome. The problem with those explanations is they stop there. So what? What's up with that weird thing which has units of energy but not quite? What's a Lagrangian? I was pretty comfy solving potential wells without having to minimize a functional, thank you very much.
-
-Next, you try to look up some sort of definition for Lagrangian. That turns out to be really not easy! 
-The closest insights you get on this page https://en.wikipedia.org/wiki/Lagrangian_mechanics is
+Ok, so far so good. If you see it for the first time it sort of blows your mind so you are curious what's next. After that, 99% of explanations are considering a classical particle in a potential well: $L(\vb{q}, \vb{v}) = \frac{1}{2} m \vb{v} \cdot \vb{v} - V(\vb{q})$. Then they plug in the Euler-Lagrange equation and get Newthon's law of motion: $\vb{F} = - \nabla V$. Yeah, awesome. The problem with those explanations is they stop there. So what? What's up with that weird thing which has units of energy but not quite? What **is** a Lagrangian? What it isn't? I was pretty comfy solving potential wells without having to minimize a functional, thank you very much.
+# TODO separator?
+A common viewpoint is a dogmatic one: Lagrangian is whatever function that corresponds to the actual physics observed in a system. For all practical purposes indeed you /just/ guess a function, plug it into EL equations and if you got your desired laws of motion -- [[https://www.urbandictionary.com/define.php?term=Numberwang][you win]]. However, what if we want to reverse the process? As in, given a Lagrangian, can we come up with a universe where it would describe the physics? To do that, you of course need to figure out what a Lagrangian can be, that is, a definition. That turns out to be really not easy! 
+The closest insights you get on [[https://en.wikipedia.org/wiki/Lagrangian_mechanics][this page]] are
 #+BEGIN_QUOTE
 Lagrangian is a function of the generalized coordinates, their time derivatives, and time, and contains the information about the dynamics of the system
 #+END_QUOTE
@@ -31,55 +31,189 @@ Lagrangian is a function of the generalized coordinates, their time derivatives,
 #+BEGIN_QUOTE
 the position coordinates and velocity components are all independent variables
 #+END_QUOTE
-I'm lucky enough to know Russian, but Russian wikipedia page is not any more helpful. You probably have a gut feeling that it's gotta at least be a smooth function or someithing like that, but it's not really mentioned anywhere. Okay, for now you decide that it must be any reasonble function of $q$, $v$ and $t$. Actually, forget time dependency for now, it's tricky enough as it is.
+I'm lucky enough to know Russian, but Russian wikipedia page is not any more helpful. You probably have a gut feeling that it's gotta at least be a smooth function or something like that, but it's not really mentioned anywhere. Okay, for now you decide that it must be any reasonble function of $\vb{q}$, $\vb{v}$ and $t$. Actually, forget time dependency for now, it's tricky enough as it is.
 
-So now that you established what's the object you are trying to study, you go through more examples. Next one is typically double pendulum or 'sliding pendulum' https://en.wikipedia.org/wiki/Lagrangian_mechanics#Pendulum_on_a_movable_support. But yet again, Lagrangian is postulated to be the difference of kinetic and potential energy, which is not very convincing.
+So now that you established what's the object you are trying to study, you go through more examples. Next one is typically double pendulum or [[https://en.wikipedia.org/wiki/Lagrangian_mechanics#Pendulum_on_a_movable_support][sliding pendulum]]. But yet again, Lagrangian is postulated to be the difference of kinetic and potential energy, which is not very convincing.
 
-Next example if typically electromagnetism: $L = \frac{1}{2} v \cdot v -e \phi + e v \cdot A$. Whoa guys, I'm still not done with simple systems! EM fields are scary, things spiral around and radiate, come on.
+Next example is typically electromagnetism: $L(\vb{q}, \vb{v}) = \frac{1}{2} m \vb{v} \cdot \vb{v} -e \phi(\vb{q}) + e \vb{v} \cdot \vb{A}$. Whoa guys, I'm still not done with simple systems! EM fields are scary, things spiral around and radiate, come on. Also EM fields are defined in three dimensions ([[https://en.wikipedia.org/wiki/Covariant_formulation_of_classical_electromagnetism][if not 4]]), which would make the whole problem six-dimensional. It's a bit too much to begin with!
 
 # TODO even Baez
 # TODO momentum equals mass times velocity
 
-TODO something about dogmatism
-Of course, for practical purposes you **just** (TODO italic) guess the Lagrangian that gives you desired physical properties. 
-However, what if we reverse the process? As in, given a Lagrangian can we come up with a universe where it would describe the physics??
 
-TODO hamiltonian
+# TODO hamiltonian
 
-TODO hamiltonian later; first try blindly and formally and see that it fails; then try explaining why (regularity and where the legendre transformation defined)
+# TODO hamiltonian later; first try blindly and formally and see that it fails; then try explaining why (regularity and where the legendre transformation defined)
+Ok fine, you think. I'll come up with my own Lagrangians and just see what happens. Let's assume that configuration space $Q$ is 1D for now, so $q$ and $v$ are just real numbers.
 
-
-
-
-Ok fine, you think. I'll come up with my own Lagrangians. Let's assume that configuration space is 1D for now, so $q$ and $v$ are just real numbers.
-
-1. If you have to come up with **any** real-valued function what would your first thought? I bet it's zero identity, so $L(q, v) = 0$. Nice, let's see what does that mean.
+1. If you have to come up with **any** real-valued function what would your first thought be? I bet it's zero identity, so $L(q, v) = 0$. Nice, let's see what does that mean.
  
-    Well, if you think about it, action is always zero, so any path would be stationary. This should probably ring an alarm but let's see what happens if we try to plug that in Hamilton's approach...
+    Well, if you think about it, action is always zero, so **any** path would be stationary. This should probably ring an alarm but let's see what happens if we try to plug that in Hamilton's approach...
+* TODO try that?
 
 #   TODO hamilton's equations: $dq/dt = 0$, $dp/dt = 0$. So $q = const$ and $p = const$. Well, that doesn't look good. First of all, the position can't change. Doesn't that mean that $p$ must be zero then? But Hamilton's equations don't really imply that. Ugh, well, maybe we have to go throught Legendre transform and all that stuff to figure out what's wrong with zero lagrangian?
 # TODO differentiable??
 
-2. Okay, another attempt. $L(q, v) = v \cdot v$ is boring$, it's like typical example, but with zero potential energy. Hmm... what if we instead we make the Lagrangian equal to potential energy **only**? $L(q, v) = - q \cdot q$.
-TODO what if we try to minimize the functional directly
+2. Okay, another attempt. $L(q, v) = v^2$ is boring$, it's like typical example, but with no potential energy. Hmm... what if we instead we make the Lagrangian equal to potential energy **only**? $L(q, v) = - q^2$.
+So, if we plug $L$ into EL equation $\dv{}{t} \pdv{L}{v} = \pdv{L}{q}$, we get... $0 = -2 q$.
 
-$ d/dt pL/pv = pL/pq $
+Err, that's looks bad. Does it only work if $q = 0$? Well, that's not too surprising I guess since we essentially solve a boundary value problem, and generally existence and uniqueness are [[http://www.scholarpedia.org/article/Boundary_value_problem#Existence_and_uniqueness][tricky]] for them. Anyway, $q(t) \equiv 0$, fine! Let's look at this solution then. First thing we notice is that it corresponds to a non-moving harmonic oscillator. Ok, that's a reasonable solution and makes physical sense. Now, if we look closely, the Lagrangian is actually taking its **maximum** value when $q = 0$. Taking literally any other path than staying at $0$ would decrease the value of Lagrangian, and hence the total action. So we actually ended up at a global maximum of this functional. Which is consistent with Hamilton's principle, since it needn't be a local/global minima, but a stationary point. I just found it interesting that such a simple example contradicts the '**minimum** action' formulation yet it's so common. But maybe, this is because the situation is kind of artifical and unphysical? Or one could argue that we could have inverted the sign, defined $L(q, v) = q^2$ and it would be maximum. So let's explore more.
 
-TODO mention boundary value problem??
-so $0 = -2q$. Err, that's looks bad. Does it only work if $q = 0$? Which seems like a sensible solution, except for our Lagrangian actually taking its **maximum** value when $q = 0$. Taking literally any other path than staying at $0$ would decrease the action. Which is consistent with Hamilton's principle, since it needn't be a local minima, but a stationary point. It's interesting however that for 'physical' trajectories action does seem to take minimum value (hence the traditional 'minimum action principle'). So what happened here?
+One mystery is that we know that the harmonic oscillator admits a solution that... well, oscillates. And our lagrangian is just like harmonic oscillator except for kinetic term. So what happened to oscillating solutions here?
 
-After a bit of TODO 
-$d/dt (2v) = - 2q$; $q'' = -q$. Right, we've all seen this. The interesting thing though is most authors often skip right to the $q(t) = A sin(\omega t)$ solution, which is what we normally think of when we imagine a swinging oscillator. However, the equilibrium solution $q = 0$ is still here if our $q_0 = q_1 = 0$ (TODO rename them as start and finish or something?)! 
+To investigate that and try to get some intuition, let's go back to the following 'standard' Lagrangian for harmonic oscillator $L_m(q, v) = \frac{1}{2} m v \cdot v - \frac{k}{2} q \cdot q$. The Lagrangian of our interest is just like that but with stiffness fixed at $k=1$ and mass equal to zero!
+So for $L_m$, the E-L equation boils down to just $m \ddot{q} = -k q$. We are ruling out $q \equiv 0$ solution for now, so this must a periodic motion with frequency $\omega = \sqrt{\frac{k}{m}}$ and the law of motion $x(t) = A sin (\omega t + \phi)$
+
+What happens to a particle on a spring if we reduce its mass while keeping the stiffness fixed? The frequency goes up. And we can't take the limit $m \to 0$, since $\sin \frac{1}{m}$ is discontinuous at $0$. So I guess that's how we lose the 'oscillating' solution.
+
+1. Now let's get back to the $q \equiv 0$ solution for $L_m$. Now that Lagrangian has got a velocity-dependent term in it, it's not that easy to tell what makes that solution special with respect to the Lagrangian. In fact, it will not be a local minimum anymore!
+ 
+To see that intuitively, just notice that the potential part of action proportional to $q^2$ gets its contribution from the path's amplitude, whereas the kinetic part proportional to $v^2$ gets it from the amplitude of path's time derivative. So, given a path $\w(t)$, we know that within the interval $[t_i, t_f]$, we know that $L(q, v) \ge -\frac{k}{2} \left( \max\limits_{t \in [t_i, t_f]} \abs{\gamma(t)} \right)^2$. The interesting thing is we can always increase the impact of kinetic term while keeping the function's maximum same by wiggling $w(t)$ it more frequently. With enough wiggling, you can make sure the action is strictly positive. To be more specific: suppose we are considering the time interval $[0, T]$ and $w(t) = \sin w 2 \pi n \frac{t}{T}$. $w(t)$ is compatible with the boundary conditions $w(0) = 0, w(T) = 0$ for any natural $n$. Now, if you compute the action, you get
+* TODO some ipython calculations of variation? parameterised by mass
+It's easy to see that for any $m$, as long as $n$ (i.e. 'wiggling' is big enough), the action difference will always be positive. TODO epsilon soesn't matter here.
+
+That means that in this case, the stationary path is not a maximum path anymore. TODO interesting what's responsible for that ???
+
+* TODO can we show explicitly that it's stationary? I guess we'd have to find a function which results in zero variation for that?? I guess it should be easy but whatever, boring for now...
+
+So yet again, in this case the trajectory for a perfectly plausible physical system trajectory ends up being a path of stationary action, not a path of minimum action! I find that fascinating for some reason, TODO blah blah Nature capable of optimization etc wonder what's the more fundamental principle responsible for following 'stationary' trajectories? Some symmetry??
+TODO check it against that condition from pdf..
+
+1. So now I'm digressing and falling into the same trap of looking at boring 'real' physical systems. But I promise you few more insights.
+Yet again, one could argue that the oscillator that stands still is an extreme case. Perhaps what we think of as the trajectories of a pendulum are doing the least action thing? So let's make things simpler and just take $L(q, v) = \frac{1}{2} v^2 - \frac{1}{2} q^2$.
+
+TODO link https://en.wikipedia.org/wiki/Harmonic_oscillator#Simple_harmonic_oscillator
+So in the spirit of Lagrangian formalism, we pose the following problem: the particle starts at $q = q_0$ and ends at $q = q_0$ (yes, same point) after time $T = 2 \pi$ (it better do because the frequency is $1$ here). We want to know the equations of motion.
+Now, you know it's gotta be some kind of periodic motion. However the question TODO
+ TODO suppose you were solving the IVP: given $q_0$ and $v_0$, where does the particle end up at $T = 2 \pi$?
+ So we know the solution is of form $q(t) = A \cos(t + \phi)$, since $q(0) = q_0$ and $q'(0) = v_0$, we get:
+ $q_0 = A \cos \phi$
+ $v_0 = -A \sin \phi$ 
+ 
+# TODO see here http://scipp.ucsc.edu/~haber/ph5B/sho09.pdf
+$q(t) = q_0 \cos t + v_0 \sin t$
+
+Now if we consider $q$ at a fixed time $T$ as a function of $v_0$, we get:
+
+$q_T(v_0) = q_0 \cos T + v_0 \sin T$, which is a linear function. So in general you can invert it and consider $v_0$ as a function of $q_T$, which would uniquely solve our BVP. However there is one special case: when $\sin T = 0$, i.e. $T = \pi k, k \in \bZ$. In that case $q_T$ ends up being constant function $q_T = q_0$, and can't be inverted! TODO ???? That means that the EL solution can't be global minimum???
+TODO check that!
 
 
-TODO ugh. tried evaluating lagrangian explicitly around q = 0, and it looks like it's a minimum as well :(
+ Now let's fix $q_0$ and vary $v_0$, so consider the function $E(v_0) = $ <TODO position of that particle after $T$. Of course it will depend continously on $v_0$, but it also won't be injective! 
+
+TODO demonstrate that?...
+TODO compute action to make sure
+TODO for pi, action is 0 to
+TODO just come up with smth negative and positive... that would prove the saddle point thing
+TODO positive -- same argument as with zero solution? A bit more handwavy?
+TODO very negative -- just stay at $q_0$ and don't move
 
 
-TODO actualy q === 0 is an UNSTABLE equilibrium! Since if we deflect it, we will never return back (due to energy conservation or whatever). in that sense, it kind of makes sense that lagrangian takes maximum value?
+TODO fuck. is it actually zero?...
+q0, v0 = var('q0 v0')
+q(t) = q0 * cos(t) + v0 * sin(t)
+nnn = q.diff(t)^2 - q ^ 2
+integrate(nnn, t, 0, 2 * pi)
 
+TODO ok, so that basically means that each individual solution can't be global minimum? So what are they, saddle points???
+# TODO separate that? that deserves a subsection I guess...
+
+
+TODO move questions about what's so special about stationary closer to feynman and baez
 
 # TODO http://www.feynmanlectures.caltech.edu/II_19.html reference to feynman; action is bigger
 # TODO I think feynman's explanation breaks if we start considering similar situation?
+
+I'm not really criticising, I'm just hoping someone would come up with some intuition why would the action want to be stationary in a similar fashion.
+
+
+Some googling results in
+
+https://en.wikipedia.org/wiki/Conjugate_points
+
+from a quick glance, conjugate points are something like opposing point on a sphere -- one could expect that EL equations would not give unique solutions for these.
+
+
+TODO 
+The functional S[x]=∫baL(t,x,x˙)dt, x(a)=A, x(b)=B must satisfy the following conditions in order to have a weak minimum for x=x(t):
+
+The curve x(t) satisfies the Euler-Lagrange equation, namely it is an extremal,
+∂x˙∂x˙L|x(t)>0,
+The interval [a,b] contains no points conjugate to a.
+The definition of conjugate points is in p.114.
+
+
+
+TODO need to consider leftmost and rightmost position?? TODO why would it minimize lagrangian??
+
+So, the smaller the mass, the more frequently it's going to oscillate, basically spending as much time as possible close to its leftmost and rightmost positions.
+# TODO err. I guess it bullshit, this 'amount of time' should be independent of period...
+# TODO I suppose here we'd have to change the coordinates to absolute, so it's easier to think about what happens within a period?... or within the same period of time, to be correct
+TODO why can't a particle jump up high?
+TODO from the physical point of view why does it want to oscillate more often??
+# TODO shoould we keep amplitude same too????
+TODO maybe that's a demonstration Lagrangian approach doesn't make sense on large time scales, only locally? cause it's not clear which solution to choose
+
+# TODO ok, let's consider one swing? Gonna be tricky though since it is mass dependent...
+
+# TODO maybe better to consider particle in kinda gravitational field here instead... but not involving the mass?? L(v, x) = mv^2/2 - gx? easier since it doesn't involve periodic motion.
+# TODO actually instead impenetrable wall
+
+# TODO what if we have v^2 term but ALSO linear? It's just like velocity transofrmation right? Is it some sort of drag/drift?? might be even total derivative?
+
+
+TODO consider if we start and ed in the rightmost position within a period timespan. Why this path is not stationary? TODO basically, because we could shift everything in the middle in both directions and decrease/increase the lagrangian?
+
+
+Right. So we found out that not having terms dependent on $v$ (which is kind of like limiting mass to $0$) can get us in trouble. Still unclear what's wrong with such a Lagrangian mathematically, as a function though!
+TODO do a better analysis of second variation?
+
+
+TODO chap6.pdf -- good remark 4 on page 7. considers harmonic oscillator and slight variation to reason the stationary function is not a maximum
+ look at prob 6.6. -- minimum of saddle?
+ 
+** TODO also that
+5. It is sometimes said that nature has a “purpose,” in that it seeks to take the path that
+produces the minimum action. In view of the second remark above, this is incorrect. In fact,
+nature does exactly the opposite. It takes every path, treating them all on equal footing. We
+end up seeing only the path with a stationary action, due to the way the quantum mechanical
+phases add. It would be a harsh requirement, indeed, to demand that nature make a “global”
+decision (that is, to compare paths that are separated by large distances), and to choose the
+one with the smallest action. Instead, we see that everything takes place on a “local” scale.
+Nearby phases simply add, and everything works out automatically.
+When an archer shoots an arrow through the air, the aim is made possible by all the other
+arrows taking all the other nearby paths, each with essentially the same action. Likewise,
+when you walk down the street with a certain destination in mind, you’re not alone. . .
+When walking, I know that my aim
+Is caused by the ghosts with my name.
+And although I can’t see
+Where they walk next to me,
+I know they’re all there, just the same.
+
+ 
+
+https://physics.stackexchange.com/questions/122486/confusion-regarding-the-principle-of-least-action-in-landau-lifshitz-the-clas
+here the guy claims about small T in lagrangian approach. other than that it's only a saddle point
+TODO wonder still if the minimum possible velocity is the global minimum?
+
+
+TODO conditions for weak minimum
+# https://physics.stackexchange.com/a/122511/40624
+TODO aha! conjugate points!
+t is such examples that Ref. 1. has in mind when saying that the principle of least action is actually a principle of stationary action. The above phenomenon is quite general, and related to conjugated points/turning points and Morse theory. 
+
+TODO ok. maybe expland it analytically around 0? might be easier.
+
+TODO nature is not lazy. nature is stationary TODO what are the implications??
+
+p = dL/dv = 0 ??? H = q \cdot q$.
+so, dq/dt =  dH/dp = 0, so q = const?
+    dp/dt = -dH/dq = 2q what does that even mean given that 
+Basically, the only solution compatible with that is $q = 0$, $p = 0$. If you think about in terms of ordinary energy, it kind of makes sense, the particle has no kinetic energy at all, so no matter what, it can't get past the potential barrier. However, if you imagine same particle starting at $q \ne 0$, if you think in terms of minimizing the path, it wants to spend as much time as it can at 'q = 0', it doesn't matter to the particle how fast does it have to get from initial $q$ to $q = 0$. so we can a discontinuity in the path, that explains our problems with Hamilton's equations? 
+
+TODO fuck, actually, as little time at q = 0! Cause the less is position, the bigger is action!
+TODO max position??
+TODO sin, etc
 
 # TODO hmmm
 # https://math.stackexchange.com/questions/1456224/euler-lagrange-equation-has-no-solution
@@ -99,6 +233,7 @@ TODO actualy q === 0 is an UNSTABLE equilibrium! Since if we deflect it, we will
 # TODO wow this pdf is actually really good! There is some duality principle, which apparently justifies hamiltonians.
 
 # TODO maybe on earth surface would be more clear?.... but then the BVP is not well posed right?
+# huh actually it's kind of connected. conjugate points, etc.
 
 # TODO eh. okay stuff I was doing in python is pretty stupid.. EL solutions already include global mins. however, it's not clear that 
 # basically the logic is: the solution is that. it's a local minimum and it's unique. hence it's a global minimum??
@@ -132,98 +267,9 @@ TODO actualy q === 0 is an UNSTABLE equilibrium! Since if we deflect it, we will
 # TODO hmm. the harmonic oscillator problem is not even well defined if we only specify mass and stiffness? It could have any amplitude, right???
 
 
-It's pretty interesting though that for non-zero kinetic energy lagrangian is taking it's minimum value at the solution though. What's the reason for the switch here? 
 
-
-Ok, fine. Euler-Lagrange equations tells us that the BVP is not even defined for any values other than $q = 0$. It still feels a bit unsatisfactory; what's wrong with removing the kinetic energy term?
-
-To investigate that and try to get some intuition, let's go back to the following 'standard' Lagrangian $L_m(q, v) = \frac{1}{2} m v \cdot v - \frac{1}{2} q \cdot q$. It's just a pendulum/harmonic oscillator basically. The Lagrangian of our interest is just like that but with mass equal to zero!
-So the E-L equations boil down to $L_m$ is just $m q'' = -q$. We are ruling out $q \== 0$ now, so this is a periodic motion with frequency $\omega = \frac{1}{m}$.
-
-What happens to a particle on a spring if we reduce its mass while keeping the stiffness fixed? The frequency goes up.
-
-TODO need to consider leftmost and rightmost position?? TODO why would it minimize lagrangian??
-
-So, the smaller the mass, the more frequently it's going to oscillate, basically spending as much time as possible close to its leftmost and rightmost positions. We can't take the limit $m \to 0$ though, since $\sin \frac{1}{x}$ is discontinuous at $0$. So I guess that's how 
-# TODO err. I guess it bullshit, this 'amount of time' should be independent of period...
-# TODO I suppose here we'd have to change the coordinates to absolute, so it's easier to think about what happens within a period?... or within the same period of time, to be correct
-
-TODO why can't a particle jump up high?
-
-TODO from the physical point of view why does it want to oscillate more often??
-# TODO shoould we keep amplitude same too????
-TODO maybe that's a demonstration Lagrangian approach doesn't make sense on large time scales, only locally? cause it's not clear which solution to choose
-
-# TODO ok, let's consider one swing? Gonna be tricky though since it is mass dependent...
-
-# TODO maybe better to consider particle in kinda gravitational field here instead... but not involving the mass?? L(v, x) = mv^2/2 - gx? easier since it doesn't involve periodic motion.
-
-# TODO what if we have v^2 term but ALSO linear? It's just like velocity transofrmation right? Is it some sort of drag/drift?? might be even total derivative?
-
-
-TODO consider if we start and ed in the rightmost position within a period timespan. Why this path is not stationary? TODO basically, because we could shift everything in the middle in both directions and decrease/increase the lagrangian?
-
-
-Right. So we found out that not having terms dependent on $v$ (which is kind of like limiting mass to $0$) can get us in trouble. Still unclear what's wrong with such a Lagrangian mathematically, as a function though!
-TODO do a better analysis of second variation?
-
-TODO ok, so in the spirit of Lagrangian formalism, we pose the following problem:
-
-https://en.wikipedia.org/wiki/Harmonic_oscillator#Simple_harmonic_oscillator
-
-$L(q, v) = v^2 - q^2$. The particle starts at $q = q_0$ and ends at $q = q0$ after time $T = 2 \pi$ (it better do because the frequency is $1$ here). We want to know the equations of motion.
-Now, you know it's gotta be some kind of periodic motion. However the question.
- TODO suppose you were solving the IVP: given $q_0$ and $v_0$, where does the particle end up at $T = 2 \pi$?
- So we know the solution is of form $q(t) = A \cos(t + \phi)$, since $q(0) = q_0$ and $q'(0) = v_0$, we get:
- $q_0 = A \cos \phi$
- $v_0 = -A \sin \phi$ 
- 
-# TODO see here http://scipp.ucsc.edu/~haber/ph5B/sho09.pdf
-$q(t) = q_0 \cos t + v_0 \sin t$
-
-Now if we consider $q$ at a fixed time $T$ as a function of $v_0$, we get:
-
-$q_T(v_0) = q_0 \cos T + v_0 \sin T$, which is a linear function. So in general you can invert it and consider $v_0$ as a function of $q_T$, which would uniquely solve our BVP. However there is one special case: when $\sin T = 0$, i.e. $T = 2 \pi k, k \in \bZ$. In that case $q_T$ ends up being constant function $q_T = q_0$, and can't be inverted! TODO ???? That means that the EL solution can't be global minimum???
-TODO check that!
-
-
-
- Now let's fix $q_0$ and vary $v_0$, so consider the function $E(v_0) = $ <TODO position of that particle after $T$. Of course it will depend continously on $v_0$, but it also won't be injective! 
-
-TODO demonstrate that?...
-
-TODO ok, so that basically means that each individual solution can't be global minimum? So what are they, saddle points???
-# TODO separate that? that deserves a subsection I guess...
-
-
-TODO chap6.pdf -- good remark 4 on page 7. considers harmonic oscillator and slight variation to reason the stationary function is not a maximum
- look at prob 6.6. -- minimum of saddle?
- 
-
-https://physics.stackexchange.com/questions/122486/confusion-regarding-the-principle-of-least-action-in-landau-lifshitz-the-clas
-here the guy claims about small T in lagrangian approach. other than that it's only a saddle point
-TODO wonder still if the minimum possible velocity is the global minimum?
-
-
-TODO conditions for weak minimum
-# https://physics.stackexchange.com/a/122511/40624
-TODO aha! conjugate points!
-t is such examples that Ref. 1. has in mind when saying that the principle of least action is actually a principle of stationary action. The above phenomenon is quite general, and related to conjugated points/turning points and Morse theory. 
-
-TODO ok. maybe expland it analytically around 0? might be easier.
-
-TODO nature is not lazy. nature is stationary TODO what are the implications??
-
-p = dL/dv = 0 ??? H = q \cdot q$.
-so, dq/dt =  dH/dp = 0, so q = const?
-    dp/dt = -dH/dq = 2q what does that even mean given that 
-Basically, the only solution compatible with that is $q = 0$, $p = 0$. If you think about in terms of ordinary energy, it kind of makes sense, the particle has no kinetic energy at all, so no matter what, it can't get past the potential barrier. However, if you imagine same particle starting at $q \ne 0$, if you think in terms of minimizing the path, it wants to spend as much time as it can at 'q = 0', it doesn't matter to the particle how fast does it have to get from initial $q$ to $q = 0$. so we can a discontinuity in the path, that explains our problems with Hamilton's equations? 
-
-TODO fuck, actually, as little time at q = 0! Cause the less is position, the bigger is action!
-TODO max position??
-TODO sin, etc
-
-1. Let's try having some dependency on $v$. $L(q, v) = A \cdot v$, where $A$ is some scalar field.
+1. Let's try having some dependency on $v$. $L(q, v) = A \cdot v$, where $A$ is some vector field.
+TODO after EL we might actually get something good from it
 
 $p = pL/pv = A$. So, $H = v \cdot p - L = v \cdot A - A \cdot v = 0$. Crap, we've seen zero Hamiltonian already and it didn't end up well. What's wrong here??? More generally, suppose $L(q, v) = C(q) \cdot v + D(q)$. Then, $pL/pv = C(q)$, and we're gonna get $H(q, p) = -D(q)$. So, if Lagrangian only got linear velocity terms, it has no impact on system dynamics??
 
