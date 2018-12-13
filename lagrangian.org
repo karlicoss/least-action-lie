@@ -1,6 +1,7 @@
 #+HTML_HEAD:      <style type="text/css">.note{ color:grey; font-size: smaller; }</style>
 #+HTML_HEAD:      <script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script>
 #+HTML_HEAD:      <script>sagecell.makeSagecell({"inputLocation": ".sage"});</script>
+#+HTML_HEAD:      <script>sagecell.makeSagecell({"inputLocation": ".src-sage"});</script>
 
 * TODO link to prev. post
   
@@ -90,6 +91,9 @@ A.show()
 #+END_SAGE
 , we get: $\frac{4 \, \pi^{3} m n^{3} - \pi T^{2} k n + {\left(2 \, {\left(4 \, \pi^{2} m n^{2} + T^{2} k\right)} \cos\left(\pi n\right)^{3} - {\left(4 \, \pi^{2} m n^{2} + T^{2} k\right)} \cos\left(\pi n\right)\right)} \sin\left(\pi n\right)}{4 \, \pi T n}$, so you can see that for any fixed $m, k, T$, we can choose $n$ ('wiggling') big enough to make the action positive. Once again, that means that in this (perfectly physical!) case, the action is not a minimum anymore. I find that pretty interesting.
 
+# TODO figure that out...
+# #+INCLUDE:  test.sage src sage
+
 * TODO check it against that condition from pdf..
 
 
@@ -147,7 +151,7 @@ I think there are couple of cool things about that snippet as a Sage program.
 
 First, notice those asserts. We are making sure the varied paths are satisfying boundary conditions without having to check manually. Also Sage does it symbolically which means the equality is exact and we don't have to worry about floating point precision!
 
-Second, notice that A(q1).polynomial(RR). We tell sage to treal the expression as a polynomial over $\mathbb{R}$, which forces it to evaluate the constants like $\pi$. Without that, the coefficient is $-\frac{8}{15} (2 \pi^5 - 5\pi^3)$. Personally I find it tricky to quickly tell the sign of that expression.
+Second, notice that A(q1).polynomial(RR). We tell Sage to treat the expression as a polynomial over $\mathbb{R}$, which forces it to evaluate the constants like $\pi$. Without that, the coefficient is $-\frac{8}{15} (2 \pi^5 - 5\pi^3)$. Personally I find it tricky to quickly tell the sign of that expression.
 
 TODO is that really the simplest way to simplify coefficients?
 #+END_NOTE
@@ -461,3 +465,11 @@ TODO consider forces?
 
 TODO I guess the important thing is that L is independent on the exact problem, it's uniform for ALL trajectories.
 however, for each specific trajectory, we only look at its points q, q'(t)
+
+This post is powered by:
+* Org-mode (via spacemacs) + org-capture
+* TODO pandoc
+* mathjax
+* Sage + [[https://sagecell.sagemath.org/][Sagecell]]
+* TODO ??? spell check
+* Git
