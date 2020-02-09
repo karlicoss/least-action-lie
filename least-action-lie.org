@@ -1,13 +1,24 @@
+#+TITLE: Least action principle is a lie
+#+SUMMARY: Aka 'does stationary action really matter?'
+#+DATE: [2019-11-19 Mon]
+#+FILETAGS: :physics:
+#+UPID: least_action_lie
+
+#+OPTIONS: toc:nil
+
+#+OPTIONS: pri:t
+#+OPTIONS: num:1
+
 #+HTML_HEAD:      <style type="text/css">.note{ color:grey; font-size: smaller; }</style>
 #+HTML_HEAD:      <script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script>
 #+HTML_HEAD:      <script>sagecell.makeSagecell({"inputLocation": ".sage"});</script>
 #+HTML_HEAD:      <script>sagecell.makeSagecell({"inputLocation": ".src-sage"});</script>
 
-* TODO link to prev. post
-  
-* TODO https://ickc.github.io/MathJax-third-party-extensions/physics/
-* https://ickc.github.io/MathJax-third-party-extensions/physics/test/macro.html
-  
+
+*Draft stage*: very raw and barely comprehendible. I'm not even completely sure what will the post be about.
+
+#+TOC: headlines 1
+
 * content
 
 
@@ -466,10 +477,17 @@ TODO consider forces?
 TODO I guess the important thing is that L is independent on the exact problem, it's uniform for ALL trajectories.
 however, for each specific trajectory, we only look at its points q, q'(t)
 
-This post is powered by:
-* Org-mode (via spacemacs) + org-capture
-* TODO pandoc
-* mathjax
-* Sage + [[https://sagecell.sagemath.org/][Sagecell]]
-* TODO ??? spell check
-* Git
+* This post is powered by:
+** Org-mode (via spacemacs) + org-capture
+** TODO pandoc
+** mathjax
+** Sage + [[https://sagecell.sagemath.org/][Sagecell]]
+** TODO ??? spell check
+** Git
+
+   
+* Misc
+** TODO link to prev. post
+** TODO https://ickc.github.io/MathJax-third-party-extensions/physics/
+** https://ickc.github.io/MathJax-third-party-extensions/physics/test/macro.html
+  
